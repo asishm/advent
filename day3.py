@@ -96,9 +96,10 @@ class ExpandingGrid:
             if debug:
                 print(cur_val)
                 print('=========')
+                self.print_grid()
             self.set_val(*next_coord, cur_val)
             self.cur_coord = next_coord
-            self.print_grid()
+            
         
         return cur_val
     
