@@ -1056,25 +1056,21 @@ input = """0
 -27"""
 
 print(solve1(parse(input), debug=False))
-
+input_l = parse(input)
 # part 2
 
 def solve2(s, debug=True):
-    end = len(s) - 1
-    current = 0
-    count = 0
-    while True:
-        new_c = current + s[current]
-        if s[current] > 2:
-            s[current] -= 1
+    step = 0
+    idx = 0
+    while idx >= 0 and idx < len(s):
+        if s[idx] > 2:
+            s[idx] -= 1
+            idx = idx + s[idx] + 1
         else:
-            s[current] += 1
-        count += 1
-        current = new_c
-        if debug:
-            print(' '.join(map(str, s)))
-        if current < 0 or current > end:
-            return count
+            s[idx] += 1
+            idx = idx + s[idx] - 1
+        step += 1
+    return step
 
 print(solve2(parse('0 3 0 1 -3')))
-print(solve2(parse(input), debug=False))
+print(solve2(input_l, debug=False))

@@ -1,8 +1,9 @@
 # day 3
 
 # part 1
-from math import ceil, floor
+from math import ceil
 import itertools
+
 
 def solve1(s):
     if s == 1:
@@ -17,12 +18,14 @@ def solve1(s):
 
     return rem + layer
 
+
 assert solve1(1) == 0
 assert solve1(12) == 3
 assert solve1(23) == 2
 assert solve1(1024) == 31
 
 print(solve1(368078))
+
 
 def generate_dirs():
     directions = ['right', 'up', 'left', 'down']
@@ -34,6 +37,7 @@ def generate_dirs():
         yield from itertools.repeat(directions[idx % 4], start)
         idx += 1
         start += 1
+
 
 class ExpandingGrid:
 
@@ -50,7 +54,7 @@ class ExpandingGrid:
         self.set_val(self.center[0], self.center[1], 1)
         self.generator = generate_dirs()
         self.cur_coord = self.center
-    
+
     def set_val(self, x, y, val):
         self.grid[x][y] = val
 
@@ -99,13 +103,12 @@ class ExpandingGrid:
                 self.print_grid()
             self.set_val(*next_coord, cur_val)
             self.cur_coord = next_coord
-            
-        
         return cur_val
-    
+
     def print_grid(self):
         for row in self.grid:
             print(' '.join(str(k) for k in row))
+
 
 e = ExpandingGrid()
 print(e.solve(368078, debug=False))
