@@ -41,14 +41,8 @@ cntj (57)""")
 
 
 def solve1(s, df):
-    snew = sorted(s, key=lambda x: len(x['balance']))
-    first = snew.pop()['name']
-
-    while True:
-        tdf = df[df.balance == first]
-        if not tdf.shape[0]:
-            return first
-        first = tdf.name.iloc[0]
+    non_end = df[df.balance != '']
+    return ''.join(set(non_end.name.unique()) - set(non_end.balance.unique()))
 
 
 print(solve1(*a))
