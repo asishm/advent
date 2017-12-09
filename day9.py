@@ -1,17 +1,10 @@
 # day 9
 
-# part 1
+# part 1, 2
 
-from collections import defaultdict
 
 def solve1(s):
-    parse = defaultdict(list)
-
-    i = 0
-    depth = 0
-    total = 0
-    in_garbage = False
-    garbage_count = 0
+    i, depth, total, in_garbage, garbage_count = 0, 0, 0, False, 0
     while i < len(s):
         if s[i] == '!':
             i += 2
